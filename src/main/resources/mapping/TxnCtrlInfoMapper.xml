@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.bill99.playdemo.dao.TxnCtrlInfoDao">
+  <resultMap id="BaseResultMap" type="org.bill99.playdemo.entity.TxnCtrlInfo">
+    <id column="idTxnCtrl" jdbcType="VARCHAR" property="idtxnctrl" />
+    <result column="idTxn" jdbcType="VARCHAR" property="idtxn" />
+    <result column="merchantId" jdbcType="VARCHAR" property="merchantid" />
+    <result column="amt" jdbcType="VARCHAR" property="amt" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    idTxnCtrl, idTxn, merchantId, amt, remark
+  </sql>
+  <select id="selectByIdTxnCtrl" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_txn_ctrl
+    where idTxnCtrl = #{idtxnctrl,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from t_txn_ctrl
+    where idTxnCtrl = #{idtxnctrl,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.bill99.playdemo.entity.TxnCtrlInfo">
+    insert into t_txn_ctrl (idTxnCtrl, idTxn, merchantId, 
+      amt, remark)
+    values (#{idtxnctrl,jdbcType=VARCHAR}, #{idtxn,jdbcType=VARCHAR}, #{merchantid,jdbcType=VARCHAR}, 
+      #{amt,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.bill99.playdemo.entity.TxnCtrlInfo">
+    insert into t_txn_ctrl
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idtxnctrl != null">
+        idTxnCtrl,
+      </if>
+      <if test="idtxn != null">
+        idTxn,
+      </if>
+      <if test="merchantid != null">
+        merchantId,
+      </if>
+      <if test="amt != null">
+        amt,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idtxnctrl != null">
+        #{idtxnctrl,jdbcType=VARCHAR},
+      </if>
+      <if test="idtxn != null">
+        #{idtxn,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantid != null">
+        #{merchantid,jdbcType=VARCHAR},
+      </if>
+      <if test="amt != null">
+        #{amt,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.bill99.playdemo.entity.TxnCtrlInfo">
+    update t_txn_ctrl
+    <set>
+      <if test="idtxn != null">
+        idTxn = #{idtxn,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantid != null">
+        merchantId = #{merchantid,jdbcType=VARCHAR},
+      </if>
+      <if test="amt != null">
+        amt = #{amt,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where idTxnCtrl = #{idtxnctrl,jdbcType=VARCHAR}
+  </update>
+  <update id="update" parameterType="org.bill99.playdemo.entity.TxnCtrlInfo">
+    update t_txn_ctrl
+    set idTxn = #{idtxn,jdbcType=VARCHAR},
+      merchantId = #{merchantid,jdbcType=VARCHAR},
+      amt = #{amt,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where idTxnCtrl = #{idtxnctrl,jdbcType=VARCHAR}
+  </update>
+</mapper>

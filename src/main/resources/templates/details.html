@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+	<div>
+		<label>交易信息</label>
+	</div>
+	<div>
+		交易编号:<span th:text="*{txnCtrlInfo.idtxn}"></span>
+	</div>
+	<div>
+		交易控制编号:<span th:text="*{txnCtrlInfo.idtxnctrl}"></span>
+	</div>
+	<div>
+		商户号:<span th:text="*{txnCtrlInfo.merchantid}"></span>
+	</div>
+	<div>
+		金额:<span th:text="*{txnCtrlInfo.amt}"></span>
+	</div>
+	<div>
+		备注:<span th:text="*{txnCtrlInfo.remark}"></span>
+	</div>
+</body>
+</html>

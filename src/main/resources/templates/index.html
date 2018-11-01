@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="css/bootstrap.css" rel="stylesheet"/>
+<script src="js/jquery-3.2.1.js"></script>
+<script src="js/bootstrap.js"></script>
+</head>
+<body>
+	<div>
+		<label>查询</label>
+	</div>
+    <form th:action="@{/query}" method="post">
+    	<div>
+    		<label>交易控制编号:</label>
+    		<input th:type="text" th:name="idTxnCtrl" title="交易控制编号"/>
+    	</div>
+    	<div>
+    		<button th:type="submit">提交</button>
+    	</div>
+	</form>
+	<div>
+		<label>新增</label>
+	</div>
+	<form th:action="@{/insert}" th:object="${txnCtrlInfo}" method="post">
+		<div>
+			<label>交易编号:</label>
+			<input type="text" th:field="*{idtxn}" title="交易编号"/>
+		</div>
+		<div>
+			<label>交易控制编号:</label>
+			<input type="text" th:field="*{idtxnctrl}" title="交易控制编号"/>
+		</div>
+		<div>
+			<label>商户编号:</label>
+			<input type="text" th:field="*{merchantid}" title="商户编号"/>
+		</div>
+		<div>
+			<label>金额:</label>
+			<input type="text" th:field="*{amt}" title="金额"/>
+		</div>
+		<div>
+			<label>备注:</label>
+			<input type="text" th:field="*{remark}" title="备注"/>
+		</div>
+		<div>
+			<button type="submit">提交</button>
+		</div>
+	</form>
+    <div>
+        <label>修改</label>
+    </div>
+    <form th:action="@{/update}" th:object="${txnCtrlInfo}" method="post">
+        <div>
+            <label>交易编号:</label>
+            <input type="text" th:field="*{idtxn}" title="交易编号"/>
+        </div>
+        <div>
+            <label>交易控制编号:</label>
+            <input type="text" th:field="*{idtxnctrl}" title="交易控制编号"/>
+        </div>
+        <div>
+            <label>商户编号:</label>
+            <input type="text" th:field="*{merchantid}" title="商户编号"/>
+        </div>
+        <div>
+            <label>金额:</label>
+            <input type="text" th:field="*{amt}" title="金额"/>
+        </div>
+        <div>
+            <label>备注:</label>
+            <input type="text" th:field="*{remark}" title="备注"/>
+        </div>
+        <div>
+            <button type="submit">提交</button>
+        </div>
+    </form>
+    <div>
+        <label>删除</label>
+    </div>
+    <form th:action="@{/delete}" method="post">
+        <div>
+            <label>交易控制编号：</label>
+            <input th:type="text" th:name="idTxnCtrl" title="交易控制编号"/>
+        </div>
+        <div>
+            <button th:type="submit">提交</button>
+        </div>
+    </form>
+</body>
+</html>
