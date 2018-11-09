@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 @Service
 public class TxnCtrlInfoService {
 
@@ -18,34 +22,41 @@ public class TxnCtrlInfoService {
         this.txnCtrlInfoDao = txnCtrlInfoDao;
     }
 
-    public TxnCtrlInfo query(String idTxnCtrl) throws MyException{
-        TxnCtrlInfo txnCtrlInfo = txnCtrlInfoDao.selectByIdTxnCtrl(idTxnCtrl);
-        if (null == txnCtrlInfo) {
+    public List<TxnCtrlInfo> query(String idTxnCtrl) throws MyException{
+//        TxnCtrlInfo txnCtrlInfo = txnCtrlInfoDao.selectByIdTxnCtrl(idTxnCtrl);
+        idTxnCtrl = "111111";
+        List<TxnCtrlInfo> txnCtrlInfos = txnCtrlInfoDao.findAllByIdTxnCtrl(idTxnCtrl);
+        System.out.println("###########" + txnCtrlInfos);
+        if (txnCtrlInfos.isEmpty()) {
             throw new MyException(MyEnum.NOTFOUND_ERROR);
         }
-        return txnCtrlInfo;
+
+
+        return txnCtrlInfos;
     }
 
-    public int insert(TxnCtrlInfo txnCtrlInfo){
-        if (StringUtils.isEmpty(txnCtrlInfo.getIdtxnctrl()) || StringUtils.isEmpty(txnCtrlInfo.getIdtxn())){
-            throw new MyException(MyEnum.NOTFOUND_ERROR);
+    public boolean insert(TxnCtrlInfo txnCtrlInfo){
+        if (StringUtils.isEmpty(txnCtrlInfo.getIdTxnCtrl()) || StringUtils.isEmpty(txnCtrlInfo.getIdTxn())){
+            throw new MyException(MyEnum.INVALIDPARA_ERROR);
         }
-        return  txnCtrlInfoDao.insert(txnCtrlInfo);
+        txnCtrlInfoDao.saveAndFlush(txnCtrlInfo);
+        return txnCtrlInfoDao.existsById(txnCtrlInfo.getIdTxnCtrl());
     }
 
-    public boolean update(TxnCtrlInfo txnCtrlInfo){
-        int result = txnCtrlInfoDao.update(txnCtrlInfo);
-        if (StringUtils.isEmpty(txnCtrlInfo.getIdtxnctrl())){
-            throw new MyException(MyEnum.NOTFOUND_ERROR);
+    public TxnCtrlInfo update(TxnCtrlInfo txnCtrlInfo){
+//        int result = txnCtrlInfoDao.update(txnCtrlInfo);
+        if (StringUtils.isEmpty(txnCtrlInfo.getIdTxnCtrl())){
+            throw new MyException(MyEnum.INVALIDPARA_ERROR);
         }
-        return 1 == result ? true : false;
+        return txnCtrlInfoDao.saveAndFlush(txnCtrlInfo);
     }
 
     public boolean delete(String idTxnCtrl){
-        int result = txnCtrlInfoDao.delete(idTxnCtrl);
+//        int result = txnCtrlInfoDao.delete(idTxnCtrl);
         if (StringUtils.isEmpty(idTxnCtrl)){
-            throw new MyException(MyEnum.NOTFOUND_ERROR);
+            throw new MyException(MyEnum.INVALIDPARA_ERROR);
         }
-        return 1 == result ? true : false;
+        txnCtrlInfoDao.deleteById(idTxnCtrl);
+        return txnCtrlInfoDao.existsById(idTxnCtrl);
     }
 }

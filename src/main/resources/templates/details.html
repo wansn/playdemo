@@ -9,20 +9,22 @@
 	<div>
 		<label>交易信息</label>
 	</div>
-	<div>
-		交易编号:<span th:text="*{txnCtrlInfo.idtxn}"></span>
-	</div>
-	<div>
-		交易控制编号:<span th:text="*{txnCtrlInfo.idtxnctrl}"></span>
-	</div>
-	<div>
-		商户号:<span th:text="*{txnCtrlInfo.merchantid}"></span>
-	</div>
-	<div>
-		金额:<span th:text="*{txnCtrlInfo.amt}"></span>
-	</div>
-	<div>
-		备注:<span th:text="*{txnCtrlInfo.remark}"></span>
+	<div th:each="txnCtrlInfo:${txnCtrlInfos}">
+		<div>
+			交易编号:<span th:text="*{txnCtrlInfo.idTxn}"></span>
+		</div>
+		<div>
+			交易控制编号:<span th:text="${txnCtrlInfo.idTxnCtrl}"></span>
+		</div>
+		<div>
+			商户号:<span th:text="${txnCtrlInfo.merchantId}"></span>
+		</div>
+		<div>
+			金额:<span th:text="${txnCtrlInfo.amt}"></span>
+		</div>
+		<div>
+			备注:<span th:text="${txnCtrlInfo.remark}"></span>
+		</div>
 	</div>
 </body>
 </html>

@@ -1,7 +1,8 @@
 package org.bill99.playdemo.enums;
 
 public enum MyEnum {
-    NOTFOUND_ERROR("输入参数有误");
+    INVALIDPARA_ERROR("输入参数有误"),
+    NOTFOUND_ERROR("查询为空");
 
     private String msg;
 

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @RestController
 public class TxnCtrlController {
 
@@ -30,9 +32,9 @@ public class TxnCtrlController {
     // 查询页面
     @RequestMapping(value = "/query", method = RequestMethod.POST)
     public ModelAndView query(@RequestParam(value = "idTxnCtrl") String idTxnCtrl) throws MyException {
-        TxnCtrlInfo txnCtrlInfo = txnCtrlInfoService.query(idTxnCtrl);
+        List<TxnCtrlInfo> txnCtrlInfos = txnCtrlInfoService.query(idTxnCtrl);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.getModel().put("txnCtrlInfo", txnCtrlInfo);
+        modelAndView.getModel().put("txnCtrlInfos", txnCtrlInfos);
         modelAndView.setViewName("details");
         return modelAndView;
     }
@@ -41,7 +43,7 @@ public class TxnCtrlController {
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public ModelAndView insert(@ModelAttribute(value = "txnCtrlInfo") TxnCtrlInfo txnCtrlInfo){
         ModelAndView modelAndView = new ModelAndView();
-        int result = txnCtrlInfoService.insert(txnCtrlInfo);
+        boolean result = txnCtrlInfoService.insert(txnCtrlInfo);
         modelAndView.getModel().put("result",result);
         modelAndView.getModel().put("txnCtrlInfo",txnCtrlInfo);
         modelAndView.setViewName("insert");
@@ -52,9 +54,8 @@ public class TxnCtrlController {
     @RequestMapping(value = "/update",method = RequestMethod.POST)
     public ModelAndView update(@ModelAttribute(value = "txnCtrlInfo") TxnCtrlInfo txnCtrlInfo){
         ModelAndView modelAndView = new ModelAndView();
-        boolean result = txnCtrlInfoService.update(txnCtrlInfo);
-        modelAndView.getModel().put("result",result);
-        modelAndView.getModel().put("txnCtrlInfo",txnCtrlInfo);
+        TxnCtrlInfo result = txnCtrlInfoService.update(txnCtrlInfo);
+        modelAndView.getModel().put("txnCtrlInfo",result);
         modelAndView.setViewName("update");
         return modelAndView;
     }

@@ -9,11 +9,6 @@
 	<div>
 		<label>修改结果</label>
 	</div>
-	<div>
-		结果:
-        <span th:if="${result} eq false">修改失败</span>
-        <span th:if="${result} eq true">修改成功</span>
-	</div>
     <div>
         <div>信息</div>
         交易编号：<span th:text="${txnCtrlInfo.idtxn}"></span>

@@ -28,15 +28,15 @@
 	<form th:action="@{/insert}" th:object="${txnCtrlInfo}" method="post">
 		<div>
 			<label>交易编号:</label>
-			<input type="text" th:field="*{idtxn}" title="交易编号"/>
+			<input type="text" th:field="*{idTxn}" title="交易编号"/>
 		</div>
 		<div>
 			<label>交易控制编号:</label>
-			<input type="text" th:field="*{idtxnctrl}" title="交易控制编号"/>
+			<input type="text" th:field="*{idTxnCtrl}" title="交易控制编号"/>
 		</div>
 		<div>
 			<label>商户编号:</label>
-			<input type="text" th:field="*{merchantid}" title="商户编号"/>
+			<input type="text" th:field="*{merchantId}" title="商户编号"/>
 		</div>
 		<div>
 			<label>金额:</label>
@@ -56,15 +56,15 @@
     <form th:action="@{/update}" th:object="${txnCtrlInfo}" method="post">
         <div>
             <label>交易编号:</label>
-            <input type="text" th:field="*{idtxn}" title="交易编号"/>
+            <input type="text" th:field="*{idTxn}" title="交易编号"/>
         </div>
         <div>
             <label>交易控制编号:</label>
-            <input type="text" th:field="*{idtxnctrl}" title="交易控制编号"/>
+            <input type="text" th:field="*{idTxnCtrl}" title="交易控制编号"/>
         </div>
         <div>
             <label>商户编号:</label>
-            <input type="text" th:field="*{merchantid}" title="商户编号"/>
+            <input type="text" th:field="*{merchantId}" title="商户编号"/>
         </div>
         <div>
             <label>金额:</label>
