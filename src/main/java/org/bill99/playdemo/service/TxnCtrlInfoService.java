@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TxnCtrlInfoService {
@@ -22,17 +20,14 @@ public class TxnCtrlInfoService {
         this.txnCtrlInfoDao = txnCtrlInfoDao;
     }
 
-    public List<TxnCtrlInfo> query(String idTxnCtrl) throws MyException{
+    public TxnCtrlInfo query(String idTxnCtrl) throws MyException{
 //        TxnCtrlInfo txnCtrlInfo = txnCtrlInfoDao.selectByIdTxnCtrl(idTxnCtrl);
-        idTxnCtrl = "111111";
-        List<TxnCtrlInfo> txnCtrlInfos = txnCtrlInfoDao.findAllByIdTxnCtrl(idTxnCtrl);
-        System.out.println("###########" + txnCtrlInfos);
-        if (txnCtrlInfos.isEmpty()) {
+        Optional<TxnCtrlInfo> txnCtrlInfo = txnCtrlInfoDao.findById(idTxnCtrl);
+        if (!txnCtrlInfo.isPresent()) {
             throw new MyException(MyEnum.NOTFOUND_ERROR);
         }
 
-
-        return txnCtrlInfos;
+        return txnCtrlInfo.get();
     }
 
     public boolean insert(TxnCtrlInfo txnCtrlInfo){

@@ -32,9 +32,9 @@ public class TxnCtrlController {
     // 查询页面
     @RequestMapping(value = "/query", method = RequestMethod.POST)
     public ModelAndView query(@RequestParam(value = "idTxnCtrl") String idTxnCtrl) throws MyException {
-        List<TxnCtrlInfo> txnCtrlInfos = txnCtrlInfoService.query(idTxnCtrl);
+        TxnCtrlInfo txnCtrlInfo = txnCtrlInfoService.query(idTxnCtrl);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.getModel().put("txnCtrlInfos", txnCtrlInfos);
+        modelAndView.getModel().put("txnCtrlInfo", txnCtrlInfo);
         modelAndView.setViewName("details");
         return modelAndView;
     }

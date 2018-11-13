@@ -7,14 +7,14 @@ import javax.persistence.*;
 public class TxnCtrlInfo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idTxnCtrl")
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idtxnctrl")
     private String idTxnCtrl;
 
-    @Column(name = "idTxn")
+    @Column(name = "idtxn")
     private String idTxn;
 
-    @Column(name = "merchantId")
+    @Column(name = "merchantid")
     private String merchantId;
 
     @Column(name = "amt")
